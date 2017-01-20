@@ -1,37 +1,10 @@
-## Welcome to GitHub Pages
+## 摘要
 
-You can use the [editor on GitHub](https://github.com/icm-2017/icm-2017.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/icm-2017/icm-2017.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+1. ### 减少排队等待时间
+   1. 虚拟排队策略
+   2. 虚拟排队的应用方法，在售票和办理登机牌的时候进行
+   3. 虚拟排队的调度策略，将人流高峰均衡到一段较长的时间里，减少平均排队等待时间
+  
+2. ### 简化机场的安检流程
+   1. 将流程模块化，流水线化
+   2. 根据不同的情况进行并发尝试，尽量缩减每位乘客的安检时间
