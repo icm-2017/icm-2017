@@ -33,13 +33,24 @@ experience.
 另外的因素是安检的流程复杂，流水线长，单个人所需的时间过长，人流动的速度过慢。如何减少排队的时间，
 提升用户体验就需要从各个方面入手，综合考虑各种影响排队时间的因素，并综合成本因素进行相应的调整和优化。
 
-## 1.相关的影响因素
+## 1.What is influencing the waiting time in line
 
 ### 1.1 乘客到达机场的时间
+### 1.2 The time passengers arrive at the airport
 
 从相关的数据来看，乘客到达安检区的分布大致是线性的，根据相应的曲线拟合，大概每十秒会有一位乘客到达安检口
 开始安检。乘客到达安检口的速度直接影响了安检通过的流量和拥挤程度，如何较好的均衡乘客到达的速度，避开集群
 现象对于减少乘客的排队时间至关重要。
+
+From the correlational data set,we find that the speed passengers arriving at the security 
+check point is linear and homogeneous to the time.Using the curve fitting we conclude that
+a passenger will arrive at the check point and start to line every 10 seconds approximately.
+The speed passengers get to the check point directly influence how many people pass the 
+security check and board and how crowded the area is in a nearly period.It is significant to 
+balance the passengers arriving at security check and avoid cluster phenomenon if we waht to 
+decrease the time every passengers waits to get themself and his carriage checked and optimize
+the user experience.
+
 
 ### 1.2 每一位乘客通过安检所花费的时间
 
@@ -69,7 +80,39 @@ experience.
 所占比率的提高，我们将在第三部分提出针对这个问题的解决方案。另一方面，对于机场来说，预检查的乘客的增
 多意味着机场需要建设更多的预检查的通道，付出更多的人力和物力，增加了机场的安检成本
 
-## 2. 相应的模型
+## 2. How the throughput is influenced
+
+### 2.1 The throughput is influenced by average check time
+
+It is easy to know that more time a passenger uses to pass through the check , 
+lower the throughput will be.So, throughput is negative to the average check time of each
+passenger.
+
+We use ***Y*** to represent the throughput and ***C*** to represent the average check time of 
+each passenger.Then we get the expression below:
+
+$$
+Y=\cfrac{1}{C}
+$$
+
+If we want to increase the throughput(***Y***),we must decrease the average check time(***C***)
+
+### 2.2 What is influencing the average check time
+
+As is described in the question D,we know that a passenger has to pass zone A , B , C,sometimes
+ D to get through the checkpoint and board the plane.The process of security check is a serial of
+check items and each passenger has to finish each single check.So，how long a passenger need to
+get through the whole security check is the sum of the time each single check consumes.
+
+We use ***A*** to represent the average time cost by zone A , ***B*** to represent the time 
+cost of zone B , ***C*** to represent the time cost of zone C , ***D*** to represent the time 
+cost of zone D.In this case we can get the expression below: 
+
+$$
+C=A+B+C+D
+$$
+
+If we want to calculate the average time cost of each passenger ,we have to calculate 
 
 ### 2.1 乘客到达机场的时间的分布
 
