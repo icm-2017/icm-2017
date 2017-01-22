@@ -12,7 +12,7 @@
 --- 
 
 
-# Decrease Waiting Time For Security Check And optimize User Experience At Airport 
+# Increase the throughput and decrease the variance of waiting time at airport 
 
 Author : Meng ZhengYuan , Gao ChunYang , Wang YunHan
 
@@ -20,20 +20,25 @@ Adviser : Xu ZhiGuo
 
 ## Introduction
 
-This paper talks about how we can decrease the time when people wait in line
-for safety check before they are allowed to board the plane.
+This paper talks about how we can optimize the throughput of the security checkpoint decrease 
+the variance of time when people wait in line for safety check before they are allowed to board the plane.
 
-As we all know,waiting too long for safety check to get boarded is bothering 
-most people who takes plan and wonder for a happy journey.This is what actually 
-happening in some airports of America.There are reasons for this situation,but there 
-responsibilities for us to distinguish this long waiting and optimize the user
-experience.
+To optimize the throughput of the airport security checkpoint we have to decrease the average time 
+each passenger used to get through the TSA security checkpoint.At present people sometimes need to 
+wait for a long time to get themselves and their packages checked by the officers.This is what often 
+happens in some big airports of America.There are reasons for this situation,but there 
+responsibilities for us to distinguish this long waiting and optimize the user experience.
 
-根据相关的的数据，造成长时间的排队等待主要是因为人流的分布在时间上的不均匀和过度聚集在某些时间段，
-另外的因素是安检的流程复杂，流水线长，单个人所需的时间过长，人流动的速度过慢。如何减少排队的时间，
-提升用户体验就需要从各个方面入手，综合考虑各种影响排队时间的因素，并综合成本因素进行相应的调整和优化。
+The key to decrease the variance of waiting time is to avoid cluster phenomenon of the the passenger
+arrive at the airport correspond to the time of plane to take off.We will get a stable waiting time
+in the line in front of the security checkpoint if we can achieve a method to balance the time
+passengers get to the start of the boarding check ( zone A in this problem ).
 
-## 1.What is influencing the waiting time in line
+At first we analysed the problem of the current situation ,including the factor that caused the
+bottleneck of the throughput and 
+
+
+## 1. What influence the throughput and the variance of waiting time
 
 ### 1.1 乘客到达机场的时间
 ### 1.2 The time passengers arrive at the airport
@@ -80,7 +85,7 @@ the user experience.
 所占比率的提高，我们将在第三部分提出针对这个问题的解决方案。另一方面，对于机场来说，预检查的乘客的增
 多意味着机场需要建设更多的预检查的通道，付出更多的人力和物力，增加了机场的安检成本
 
-## 2. How the throughput is influenced
+## 2. What is bottleneck of the throughput
 
 ### 2.1 The throughput is influenced by average check time
 
