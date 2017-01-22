@@ -88,11 +88,11 @@ It is easy to know that more time a passenger uses to pass through the check ,
 lower the throughput will be.So, throughput is negative to the average check time of each
 passenger.
 
-We use ***Y*** to represent the throughput and ***C*** to represent the average check time of 
+We use ***Y*** to represent the throughput and ***T*** to represent the average check time of 
 each passenger.Then we get the expression below:
 
 $$
-Y=\cfrac{1}{C}
+Y=\cfrac{1}{T}
 $$
 
 If we want to increase the throughput(***Y***),we must decrease the average check time(***C***)
@@ -109,10 +109,206 @@ cost of zone B , ***C*** to represent the time cost of zone C , ***D*** to repre
 cost of zone D.In this case we can get the expression below: 
 
 $$
-C=A+B+C+D
+T = A + B + C + D
 $$
 
-If we want to calculate the average time cost of each passenger ,we have to calculate 
+If we want to calculate the average time cost of each passenger ,we have to calculate the time
+cost of each step (include A, B, C, D) .
+
+### 2.3 How we can calculate the average check time
+
+In the last section,we concluded that we have to calculate the time cost of each step of the 
+security check.Now,we calculate each of them.
+
+#### 2.3.1 How we calculate time cost of zone A
+
+From the data given in excel,we use average value to determine the time each passenger
+cost to pass zone A
+
+![](figures/CD.png)
+<center>Figure 2.1 time cost of zone A</center>
+
+We make a bar graph as shown above（Figure 2.1).From this graph and the average value show by a vertical line 
+on the graph, we can know that the time cost of zone A is about 10 seconds in average.So, we use 
+10 seconds as the average of the time cost as a passenger pass through the check of zone A and 
+go on for the check of zone B.That means:
+
+$$
+A = 10
+$$
+
+#### 2.3.2 How we calculate time cost of zone B
+
+The time cost of zone B can be calculated from three part(Miliwave,X-Ray,and belt),
+we use ***B1*** , ***B2*** , ***B3*** to represent the 3 parts and calculate them separately 
+to get the ultimate result--time cost of zone B.
+
+From the data of milimeter wave scan time column,we get the graph below(Figure 2.2):
+
+![](figures/E.png)
+<center>Figure 2.2 time cost of milimeter wave scan</center>
+
+Using the curve fitting we found that the linear model is simple and fits good with the shape
+of the data curve,so we use the function ***y=12x-19*** to describe the time cost of milimeter
+wave scan time.Now,we get ***B1*** :
+
+$$
+B1 = 12
+$$
+
+From the data of X-Ray scan time column,we get Figure 2.3 as shown below:
+
+![](figures/FG.png)
+<center>Figure 2.3 time cost of X-Ray scan</center>
+
+From the result of curve fitting we know the time cost of X-Ray cost of passengers can be
+roughly decribed by the function ***y = 5.9x - 18***,so we just assume :
+ 
+ $$
+ B2 = 6
+ $$
+ 
+From the data of column H ( Time to get scanned property ),we can get the graph 
+below(Figure 2.4) ：
+
+![](figures/H.png)
+<center>Figure 2.4 time cost of X-Ray scan</center>
+
+We can know from Figure 2.4 that the average of the time each passenger cost to get the 
+scanned property isabout 29 seconds.Considering that on a long time range the amount of 
+passengers is relatively large and it is suitable to use this value (29s) as the time cost 
+of package scan checking on the transport belt.That is :
+
+$$
+B3 = 29
+$$
+
+Now we have all the three part of time （***B1*** , ***B2*** , ***B3*** ) in zone B,but how 
+long a passenger cost is not the sum of the three part.Because when a passenger take out his
+computer and other electronic devices from his packages and pockets and other items that 
+has to be put in a bin and get checked.Then he can put these things on the belt and step
+forward to get himself checked by a miliwave check or X-Ray check.In other words,the check
+of items and person is parallel and the time cost by this parallel procedure should be the
+longest time of the three parts of time.
+
+From the result above,we can calculate ***B*** from ***B1*** , ***B2*** , ***B3***:
+
+$$
+B = max\{ B1 , B2 , B3 \}
+$$
+
+And the three  part of time we have got above:
+
+$$
+\begin{cases}
+B1 = 12 \\
+B2 = 6 \\
+B3 = 29
+\end{cases}
+$$
+
+So:
+
+$$
+B = 29
+$$
+
+The conclusion above is based on the premise that every passenger passes the security check
+and have no item that might cause an argument with the officers.If a passenger bring some 
+thing considered dangerous to be with the passenger when boarding by the officer,then the 
+time cost will increase a lot and might block the whole line.In this case,the passenger 
+can be moved to zone D and get more check by the officers at zone D.Because the ratio of 
+'problem' passengers in all the passengers is small,so we will talk about this problem 
+in chapter 2.4
+
+### 2.3 How we calculate the time cost of zone C
+
+What the passengers do at zone C is simply collect their items and go boarding the plane.
+This is very easy and fast process so we just ignore this part of time:
+
+$$
+C = 0
+$$
+
+### 2.4 How we calculate the time of zone D
+
+Only in the situation when a passenger brings something considered very hard to judge
+or just cannot be judged by the officers at zone C or something that causes an argument
+between the checkers and the passenger that a passenger will go to zone D for further 
+check.The average time a passenger cost in zone D( not everyone cost time in zone D ) is
+determined by the ratio of passenger that must be checked at zone D,we use 
+***P<sub>D</sub>*** to represent this ratio,and we use ***T<sub>D</sub>*** to 
+represent the time one passenger stays at zone D and get checked by the officer.So
+the average time each passenger cost in zone D ( considering all the passengers, include 
+those who do not need to go to zone D for further check ) is 
+***T<sub>D</sub>*** x ***P<sub>D</sub>*** ,that means :
+
+$$
+D = P_D \times T_D
+$$
+
+The value of D is relational to ***T<sub>D</sub>*** and ***P<sub>D</sub>***,but there are only 
+a very small part of passenger need to be checked at zone D,so D is so small that it will 
+not cause big influence to the average time of the whole security check.In this situation,
+we just consider D a constant determined by the security policy of the TSA.
+
+To be convenience for our calculation,we temperately make an assumption :
+
+$$
+D = 0
+$$
+
+### 2.5 The bottlenecks of the security check procedure is zone B
+
+From the conclusion above:
+
+$$
+T = A + B + C + D
+$$
+
+and
+
+$$
+\begin{cases}
+A = 10 \\
+B = max\{ B1 , B2 , B3 \} = 29 \\
+C = 0 \\
+D = P_D \times T_D
+\end{cases}
+$$
+
+The result is :
+
+$$
+T = A + B
+$$
+
+We can get the percentage of time each part(A , B , C and D) relative to the whole time cost (***T***) 
+of the security check procedure :
+
+$$
+\begin{cases}
+R_A = \frac{A}{A+B} \\
+R_B = \frac{B}{A+B}
+\end{cases}
+$$
+
+assign the relative data to ***A*** and ***B*** we can get :
+
+$$
+\begin{cases}
+R_A = 25.64 \% \\
+R_B = 74.36 \% \\
+R_C = 0 \% \\
+R_D = 0 \%
+\end{cases}
+$$
+
+Conclusion is drawn from the result shown above that the time a passenger cost has so high a ratio of 
+the whole time used in security check and the time cost in zone A and zone B has so big a gap that
+the passing ratio of zone A and zone B cannot reach the state of balance.We can also say that every 
+period of time zone A will get blocked by the low speed of zone B.All in one,costing too long in zone 
+B is the bottleneck of the security check throughput.
 
 ### 2.1 乘客到达机场的时间的分布
 
