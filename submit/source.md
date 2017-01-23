@@ -35,17 +35,24 @@ in the line in front of the security checkpoint if we can achieve a method to ba
 passengers get to the start of the boarding check ( zone A in this problem ).
 
 At first we analysed the problem of the current situation ,including the factor that caused the
-bottleneck of the throughput and 
+bottleneck of the throughput and big variance of waiting time in the line.Then we build a model to 
+calculate the average time cost of the passengers when they get through the security checkpoint based 
+on these factors.We also developed a algorithm of pre-allocate time slice to decrease the variance 
+of the waiting time.At last we give some advice and imaginations that might greatly optimize the user 
+experience but is based on some new technology and more expense.
+
+## review of the problem
+
+For the reason of safety, American airports are using a very complicated and time-consuming methods 
+at the security checkpoints.This action benefits the safety,however,on the other side,it not only
+limits the throughput of the airport to a low level,but also slow down 
+the speed passengers pass the boarding check and take off。What's worse,it even leave some people 
+delayed of their flight.It is very necessary to put forward a solution for these problems.
 
 
 ## 1. What influence the throughput and the variance of waiting time
 
-### 1.1 乘客到达机场的时间
-### 1.2 The time passengers arrive at the airport
-
-从相关的数据来看，乘客到达安检区的分布大致是线性的，根据相应的曲线拟合，大概每十秒会有一位乘客到达安检口
-开始安检。乘客到达安检口的速度直接影响了安检通过的流量和拥挤程度，如何较好的均衡乘客到达的速度，避开集群
-现象对于减少乘客的排队时间至关重要。
+### 1.1 The time distribution of passengers arriving at the airport
 
 From the correlational data set,we find that the speed passengers arriving at the security 
 check point is linear and homogeneous to the time.Using the curve fitting we conclude that
@@ -56,34 +63,44 @@ balance the passengers arriving at security check and avoid cluster phenomenon i
 decrease the time every passengers waits to get themself and his carriage checked and optimize
 the user experience.
 
+### 1.2 The average time cost of each passenger to get through the checkpoint
 
-### 1.2 每一位乘客通过安检所花费的时间
+The time from a passenger begin to get check by the officer to the passenger collect their items from
+zone C is directly influenced by the security policy and procedures the airport security 
+checkpoint use.The longer security the check takes,the higher the average time cost of the 
+passenger.A longer time cost of passenger need to pass the checkpoint decrease the throughput
+of the airport.So we have to decrease the average check time to increase the throughput of the 
+airport.
 
-乘客从开始检查登机牌等证件开始，知道通过安检拿走自己的行李结束，这段时间与机场的安检策略有着非常直接的
-关联。从安全的角度考虑，安检越详细，安全性就越高，但是过分详细的安检可能会大幅度延长乘客花费在安检上
-的时间，而且由于文化的差异，有些安检条目可能会对用户的隐私和习惯带来不便
+### 1.3 security policy also influence the average check time
+ 
+ On the side of security,a strict security policy will decrease the probability of 
+ dangerous accident or safety events.But on the side of profit,a over-strict security
+ policy will influence the time each passenger take to get through the checkpoint.It is 
+ significant to find the balance between both side.
+ 
+### 1.4 pre-check works fine to increase the throughput
 
-### 1.3 特殊情况的乘客所占的比例对整体的影响，以及相应的政策和规定对于异常乘客比例的影响
+Compared to normal passenger,the passenger that enroll the pre-check program has a simplified 
+process of security check.This benefits a lot to the time cost of the passenger and the user
+experience.In fact, a higher percentage of the pre-check passengers has both advantages and 
+a little disadvantages to the airport.
 
-安检策略的严格程度从一定程度上决定了安检异常乘客所占的比率，相对宽松的安检可能会在一定程度上降低安检
-异常的乘客所占的比率，而过分严格的安检会大幅度增加案件异常的乘客所占的比率，从而增加处理这些乘客所花
-费的时间和人力物力，造成安检队伍的堵塞，增加排队乘客的等待时间，对用户的体验造成不好的影响
+The advantage is pre-check greatly decreased the time a passenger use to pass the check because 
+part of pre-check passengers needn't to take off their shoes,belts and jackets.They also don't 
+need to take out their computers and other electronic items to get checked.This not only 
+make it possible for passengers to get through the check in a shorter time but also make the passengers
+feel that their personal habit is respected.The user experience gets better while the throughput 
+of the airport is get higher than normal case.
 
-### 1.4 预检查乘客所占的比例对于流量的影响，以及通过降低预检查乘客的价格带来的预检查乘客的比例的增加而需要增加更多的预检查通道所带来的成本和收益问题
-
-预检查通过提前的检查缩减了安检时的检查时间，对于提高用户的体验有着较为良好的效应。但是预检查用户所
-占有的比率的增加对于整体的情况的影响是多个方面的，包括好的方面和坏的方面。
-
-从好的方面来说，预检查大幅度减少了用户花在安检上的时间，减少了用户在安检时的条目，用户不用将相关的
-物品从包里面拿出来，经过检查之后再返回包里。而且，用户也不用再将外衣，鞋子，皮带等相关物品脱下接受
-人体扫描。这不管是对于用户的隐私和生活习惯，还是用户的乘机体验都有非常好的影响。同时，对于机场来说，
-安检时间的减少意味着一条安检通道可以在相同的时间内通过更多的乘客，一方面可以增加乘客的流量,另一方面
-意味着机场的安检部门可以用更少的安检队列完成安检的任务，降低了安检的成本。
-
-从坏的方面说，预检查需要乘客提前付出一定的代价，这对于不同的乘客可能造成不公平的心理因素影响，并且对
-于那些乘坐飞机次数相对较少的乘客来说，办理预检查可能对于这些人不具有什么吸引力，从而不利于预检查乘客
-所占比率的提高，我们将在第三部分提出针对这个问题的解决方案。另一方面，对于机场来说，预检查的乘客的增
-多意味着机场需要建设更多的预检查的通道，付出更多的人力和物力，增加了机场的安检成本
+The disadvantage of pre-check is the pre-check program is only available for the passenger 
+who have paid for it.It increase the expense a passenger cost to get a better treatment at 
+the airport.The user might get confused whether he should enroll into the pre-check program
+to get a better and more simple security check.What is more,if too many people take part in
+the pre-check program ,the load ability of the current airport pre-check lane will receive 
+a hard challenge and the airport have to pay more expense to build more pre-check lane if 
+too many passengers is pre-check program user and the number of these users is out of the limit the 
+current pre-check lane can accept.
 
 ## 2. What is bottleneck of the throughput
 
@@ -104,7 +121,7 @@ If we want to increase the throughput(***Y***),we must decrease the average chec
 
 ### 2.2 What is influencing the average check time
 
-As is described in the question D,we know that a passenger has to pass zone A , B , C,sometimes
+As is described in the this problem,we know that a passenger has to pass zone A , B , C,sometimes
  D to get through the checkpoint and board the plane.The process of security check is a serial of
 check items and each passenger has to finish each single check.So，how long a passenger need to
 get through the whole security check is the sum of the time each single check consumes.
@@ -315,100 +332,144 @@ the passing ratio of zone A and zone B cannot reach the state of balance.We can 
 period of time zone A will get blocked by the low speed of zone B.All in one,costing too long in zone 
 B is the bottleneck of the security check throughput.
 
-### 2.1 乘客到达机场的时间的分布
 
-乘客到达机场开始安检的时间设为T，T是一组相应的离散的时间点，代表了乘客到达安检的时间，这个T应该是关于
-到达的人数(设为n)的一个函数
+## 3 The solution for increase the throughput
 
-![Figure 1.到达时间的函数拟合](figures/A.png)
+### 3.1 A more vivid description of the bottleneck
 
-<div style="text-align:center;font-size:small">Figure 1.到达时间的函数拟合</div>
+Now we use another way to describe the bottleneck of the current situation.We use the water flow to 
+represent the passenger flow and draw an image to make it easier to analyse the problem and understand 
+our solution(Figure 3.1)
 
-经过数据作图和函数拟合(Figure 1)，我们发现线性模型可以较好的描述这种情况
+![](figures/Figure%203.1.png)
+<center>Figure 3.1 A better abstract of the security check</center>
 
-$$
-T=an+b;
-$$  
+In the graph above,we use the width of the range to represent the passing speed of the security 
+check procedure A, B, and C.The passenger need to go through the three part one after another.
+How many passengers can pass the check is not determined by the fastest part but the slowest part.
+So,we have to break the finest part (B) to optimize the throughput of the whole system.
 
-其中的a，b是相应的系数，根据数据作分析，可以得出
+### 3.2 The way to break the bottleneck to enhance the throughput
 
-$$
-\begin{cases}
-a=  \\
-b=  
-\end{cases}
-$$  
-
-这个模型是后面的许多公式和结论的基础
-
-
-### 2.2 人均安检时间的分布（包括异常乘客说造成的影响）
-
-### 2.3 预检查带来的成本和收益问题，以及对于减少人均排队时间的影响
-
-### 2.4 增加一个安检通道所能带来的排队时间收益，人流量收益以及所需的成本
-
-## 3. 解决方案
-
-### 3.1 通过算法进行安检时间的调度
-
-相对于较为随机和混乱的乘客自主选择排队时间和排队地点，集中式的的排队时间和地点调度能够大幅度提升排队的效率。
-这是因为如果乘客按照没有任何调度的去排队，那么，就会随着航班起飞的时间出现一波一波的排队高峰期，大部分的乘客
-把自己的时间浪费在由于队伍较长而造成的等待上。为了解决这个问题，必须有一种更为有效和方便的调度策略，让每个乘
-客在最合适的时间去接受安检，尽量避免让乘客在很长的队伍里等候，这样，一方面可以提升用户体验，另一方面可以减小
-机场的安检压力
-
-为了对乘客进行调度，我们决定采用建议和强制性相结合的策略。这种策略一方面可以尽力减少乘客在安检的时候很容易
-出现的集群现象，另一方面也可以让乘客更加自由的去安排自己的行程时间，并且不会由于安检而赶不上自己的飞机
-
-我们的方案大致分为建议和强制性的两部分：
-
-1. 基于对乘客的安检时间进行建议来进行安检时间的调度：
-   
-   在乘客订购机票的时候，给予乘客相关的信息，让乘客选择自己一个自己比较方便的时间段。我们预测到大部分乘客
-   可能会选择比较靠近航班起飞时间的时间段，因此，在乘客选择时间段的时候，我们将这一时间段被乘客选择的次数
-   提供给乘客，那么，乘客就有一定的可能放弃最靠近航班起飞时间的时间段，转而选择排队人数较少的时间段。对于
-   每一个时间段，这一时间段被选择的次数越多，那么发生长时间等待的可能就越大,在乘客选择时间段的时候告知每个
-   时间段的拥挤情况，乘客便会优先选择人数较少的时间段，从而做到乘客在时间上的均衡，避免出现集群现象
-   
-2. 基于强制性的安检时间范围的限制：
-   
-   为了避免一部分的乘客在航班起飞之前，提前太长的时间去进行安检，从而造成搭乘很快就要起飞的航班的乘客在安检
-   的队列中等候，航空部门可以通过一定的强制性措施去限制乘客，不要让乘客提前太长的时间进行安检，把安检的机会
-   留给当前最紧急的乘客，从而避免有的乘客因为安检而无法登机
-
-### 3.2 通过动态的告知乘客排队等待时间，尽量均衡的进行乘客的调度
-
-乘客到达机场后，会在飞机起飞之前办理登机牌，然后选择某个时间到达安检口进行安检，在乘客办好登机牌到开始
-排队安检的这段时间内，如何避免乘客出现集群现象对于减少排队时间，提升用户的体验非常重要，为了做到这一点
-我们建立了动态的队列模型，给出了当前安检队列的情况，并针对当前哪些已经办理了等级牌但还没有安检的乘客给出
-相应的建议，建议乘客在系统调度的时间段内去进行安检，可以等待最少的时间。
-
-### 3.3 为不遵守调度的少数人预留相应的空间
-
-当调度系统给出了相应的调度建议之后，乘客可以选择接受系统给出的调度建议，也可以不接受而根据自己的情况去选择时间，
-这对针对这种情况我们的解决办法是在调度系统在进行时间的调度时，大致估算这部分乘客（不接受系统给出的时间）的比率，
-而为这些乘客预留一定的队列压力额度。
-
-### 3.4 信用的等级激励策略
-
-### 3.5 脱衣服缓冲区，缓冲队列
-
-由于整个安检程序最消耗时间的部分是对乘客的行李，背包，衣物等进行检查，从数据中也可以看出（Figure ）这个
-部分是整个系统的瓶颈所在，因此我们的解决方案打算通过对这部分的并行化来突破这个耗时的瓶颈。下图是我们的方案示
-意图
+To break the bottleneck of the check system we add some area called buffer spaces to the current check
+system.Shown as the picture below(Figure 3.2).
 
 ![](figures/buffer.jpg)
-<center style="font-size:small">Figure 1.Add items Preparation Areas To Each Path</center>
+<center>Figure 3.2 Break the bottleneck by parallize the items preparing at zone B</center>
 
-在图中，我们通过增加同时开始准备对自己的行李物品进行类，脱掉衣服准备开始接受检查的人数，来避免时间耽误在等待
-每位乘客准备好他们的行李，进行分类并脱掉衣服的过程上，即不要让整个队伍都等正在接受安检的那个人分类自己的物品，
-脱掉相关的衣服等过程上。这样的话，即可在整个流程中大幅度削减乘客接受安检时花费在这个环节的时间，从而在整体上
-加快了队伍的前进速度，让乘客的排队时间更短，用户体验更佳。
+In the picture above ,we add some separated spaces before zone B shown as the blue rectangles.These 
+standalone areas is used to buffer the passenger flow and adjust the speed gap between zone A and zone
+B.In out solution,passengers arrived zone B and selected a empty buffer space and begin to prepare their
+clothes,shoes and electronic devices and sort these items in the bins put at each separated spaces.In 
+this way there more than one passenger preparing their items for the security check at the same time 
+and significantly decrease the time cost of each passenger when get their things such as shoes, belts,
+etc ready for the check.The result is the passenger will use a much shorter time to pass the check
+of zone B.This solution also balance the speed of zone A and zone B.So the new abstract graph will 
+be like the below one(Figure 3.3).
+
+![](figures/3.3.png)
+<center>Figure 3.3 bottleneck is broken</center>
+
+## 4. Decrease the variance of the waiting time in line by pre-allocate time slice
+
+### 4.n Balance the checkpoint load and reduce the variance of the waiting time
+
+In normal case,the passengers' arrival at the airport is a series of normal distribution.The problem is 
+insome time period the number passengers line for security check is over the maximum load of the 
+checkpoint and lead to long lines and long waiting time.So,it is hard for the passengers to predict 
+how long it will take to get through the checkpoint and board their flight in time.
+
+To make the waiting time more stable and predictable for passengers,we take the method called 
+***"pre-allocate
+time slices"*** to try the best to balance the passenger flow passing through the check station.Below is a 
+description picture of it(Figure 4.1).
+
+![](figures/pre_allocate.png)
+<center>Figure 4.2 pre-allocate time slice</center>
+
+As is described in the picture above,we split the time in to several pieces based on the maximum load 
+level of the checkpoint and the number of the passengers taking plane at the airport.The purpose we 
+split time into small part is to ask the passenger to choose one of them available for them and 
+they thought suitable for them.There several rules for passengers when they select their check
+time.
+
+1. At first,give every time slice a initial value 0
+2. When the passenger is buying their ticket from website or telephone,they are required to select a 
+time slice that is available for them(Here,available means the time slice is before their flight take
+off)
+3. The time slice is scheduled under the control of the airport, the user who buy the ticket earlier
+can select the time slice earlier and the earlier a passenger select the time slice the bigger is the
+chance he could select a time slice that's more suitable for him(For example,closer to the time the
+flight tekes off ).
+4. If a passenger select a time slice,the value associated with the time slice should increase 1.
+5. If the corresponding value of a time slice is up to ***M*** , then no passenger is able to select this 
+time slice.They have to select the time slice before or after the current time slice.
+
+In the actual situation,the value ***M*** should be associated with the maximum throughput of the 
+checkpoint,and is less than the maximum value.Here,we use a ratio fo describe this situation for 
+further discussion.
+
+$$
+M = P_M \times Max
+$$
+
+Here,***P<sub>M</sub>*** is a adjustable parameter depending on the actual status of the system.
+Not all the passenger can arrive the checkpoint in the time slice they selected and we should 
+leave some flexible space for these people to avoid they get delayed of their flight.Observation
+the ratio of how many passengers arrived the checkpoint in the time slice they selected before
+is the main method to determine the value of ***P<sub>M</sub>***.The higher this ratio is,the higher
+the ***P<sub>M</sub>*** can be set.Please notice that the range of the value ***P<sub>M</sub>*** is
+from 0 to 1 ( 0 < ***P<sub>M</sub>*** < 1 ).
+
+### 4.3 The pre-allocate time slice solution do decrease the variance of waiting time
+
+After we use the pre-allocate time slice method to balance the passengers' arrival at the 
+check station,we can get the distribution bar graph like below.
+
+![]()
+<center>Figure 4.2 the distribution when using pre-allocate time slice schedule</center>
+
+From the graph above we can find that the distribution of the passengers' arrival has changed 
+from s the combination of several normal distribution to the uniform distribution.So the variance 
+of the waiting time now is much smaller than before
+
+The solution we developed above is suggestive，the user is strongly recommended to begin their 
+checks in the time slice they selected when they buy their tickets
+ before they are allowed to board.But it doesn't means the user cannot get themselves
+check at the check station out of the time slice they selected.This kind of action will 
+cause some problem to the stability of the system and even some worse impact.So we will put 
+forward a suggestion based on the credit hierarchy to solve this problem in the next chapter.
+
+### 4.4 use credit hierarchy to encourage the passengers arrive in time
+
+The credit hierarchy is a system that manages the credit value of each passenger.The credit value
+is associated with the times passengers' arrive at the checkpoint in the time slice they select.
+More times a passenger arrives in time and on time, the higher his credit will be.
+
+We use this credit hierarchy to encourage passenger to get to the checkpoint in time so the 
+flow of passenger can be well scheduled to balance the load of the check station and avoid 
+big variance of line time.We make great efforts to make the waiting time of security check
+stable a get user away from the choice between arriving unnecessarily early or potentially 
+missing their scheduled flight.
+
+There are also several kinds benefit to those passenger having high credit value in our solution.
+
+1. associate the high credit hierarchy to their social accounts like twitter,google,and facebook.
+The high credit value is a representation of their punctuality and a kind of glory.
+2. the passengers with high credit value owns the right for a better discount of the ticket.
+3. the passengers with high credit hierarchy can receive the gifts from the airport in some special
+festivals like Christmas Day and Valentine's Day.
+
+In the factual situation, the airport can use more kinds benefit to encourage the passenger to 
+follow the schedule of the pre-allocate time slice.
 
 ## 4. 未来展望
 
-### 4.1 无感式（no-touch）安检流程
+## 4. further works
+
+### 4.1 no-touch security check
+
+
 
 即时我们通过各种手段，包括乘客的调度，加快安检流程等，用来缩减乘客的排队时间，让一切更为的有序，减少混乱，
 提升用户体验。但是，对于乘客来说，这些还是太过于复杂，我们小组受到亚马逊自动超市的启发，希望运用最近新出现的
