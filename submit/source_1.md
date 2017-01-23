@@ -1,113 +1,40 @@
-<br>
-<style>
-body
-{
-    font-size:15px;
-}
-img
-{
-    max-height:300px;
-}
-</style>
-
-![](figures/summary.png)
-
 ## Summary
 
-After the terrorist attack in the US on September 11, 2001,TSA use a strict policy to check
-all the passengers and their luggage,which results in a big impact to the throughput of the 
-airport.At the same time,the security check policy makes the passengers spend more time at 
-the check point,or at the waiting line to the checkpoint.
 
-Our main aim is to analyse and solve the problem mentioned above from twe sides:one is to increase 
-the throughput of the airport influenced bu the check policy,the other is to make the waiting 
-time of the passengers more stable and shorter to let the user free of making the choice 
-between arriving unnecessarily early or potentially missing their scheduled flight.
-
-To increase the throughput of the airport,we summarize the security check procedure to mathematical
-models and use the available data to analyse and find the bottleneck of the current check procedure and 
-the factors that cause the bottleneck.After the bottleneck is confirmed,we put forward a solution
-to break the bottleneck and increase the throughput of the airport while the improvements cause 
-no bad effects to the security of the check.The main idea of the solution is to parallelize the 
-slowest part of the whole security check process by add several separated space called item preparation
-buffer in front of zone B to balance the check speed of this zone and that of the other zones.
-
-We also work on the solution to decrease the variance of the time passengers need to wait to get
-through the securit check.A unpredictable time cost of security check brings the passenger a lot
-of troubles and inconvenience.A model based on normal distribution is built to analyse the problem
-and search for the key factor to make the time cost more stable.After that we developed a model
-called "***pre-allocate time slices***" to balance the passenger flow on the time range.The model
-can significantly decrease the variance of the time passengers wait in line and make the time
-cost of passing the checkpoint more predictable and convenience the passengers a lot.
-
-Some advice are given at at the end of the paper to enhance the throughput and optimize the security
-check procedure to make it more convenience for passengers at airport.More expense is needed to 
-achieve the solution in this part,but this is a valuable reference for further optimization.
-
-***keywords*** : throughput,bottlenecks,security check,pre-allocate time slice,buffer,parallelize
-
-
-<br>
-<br>
-<br>
 
 ## Contents
 
-Introduction ············································································································································· 3
+Introduction ·························································
 
-Revirw of the problem ····························································································································· 3
+Rewirw of the problem
 
-1. What influence the throughput and the variance of waiting time ····················································· 3
+1. What influence the throughput and the variance of waiting time
 
-   1.1 The time distribution of passengers arriving at the airport ························································· 3
+   1.1 The time distribution of passengers arriving at the airport
    
-   1.2 The average time cost of each passenger to get through the checkpoint ································· 4
+   1.2 The average time cost of each passenger to get through the checkpoint
    
-   1.3 security policy also influence the average check time ······························································ 4
+   1.3 security policy also influence the average check time
    
-   1.4 pre-check works fine to increase the throughput ······································································ 4
+   1.4 pre-check works fine to increase the throughput
    
-2. What is bottleneck of the throughput ······························································································ 4
+2. What is bottleneck of the throughput
 
-   2.1 The throughput is influenced by average check time ······························································· 4
+   2.1 The throughput is influenced by average check time
    
-   2.2 What is influencing the average check time·············································································· 5 
+   2.2 What is influencing the average check time
 
-   2.3 How we can calculate the average check time········································································· 5 
+   2.3 How we can calculate the average check time
       
-   2.3.1 How we calculate time cost of zone A ··················································································· 5
+   2.3.1 How we calculate time cost of zone A
    
-   2.3.2 How we calculate time cost of zone B ··················································································· 6
+   2.3.2 How we calculate time cost of zone B
    
-   2.4 How we calculate the time cost of zone C ··············································································· 8
+   2.4 How we calculate the time cost of zone C
    
-   2.5 How we calculate the time of zone D ························································································ 8
+   2.5 How we calculate the time of zone D
    
-   2.6 The bottlenecks of the security check procedure is zone B ······················································ 9
-   
-3. The solution for increase the throughput ························································································· 9
-
-   3.1 A more vivid description of the bottleneck ················································································· 9
-   
-   3.2 The way to break the bottleneck to enhance the throughput ···················································· 10
-   
-4. Decrease the variance of the waiting time in line by pre-allocate time slice·····································11
-
-   4.1 Balance the checkpoint load and reduce the variance of the waiting time ·································11
-   
-   4.2 The pre-allocate time slice solution do decrease the variance of waiting time ·························· 12
-   
-   4.3 use credit hierarchy to encourage the passengers arrive in time ·············································· 13
-   
-5. further works ···································································································································· 14
-
-   5.1 notice-less security check ·········································································································· 14
-   
-   5.2 use 3D scanner to speed up the package check ······································································· 14
-   
-   5.3 accelerate the body scan············································································································ 14
-   
-References ············································································································································· 14
+   2.6 The bottlenecks of the security check procedure is zone B
 
 # Increase the throughput and decrease the variance of waiting time at airport 
 
@@ -471,14 +398,10 @@ be like the below one(Figure 3.3).
 
 ### 4.1 Balance the checkpoint load and reduce the variance of the waiting time
 
-In normal case,the passengers' arrival at the airport is a series of normal distribution(see Figure 4.1).
-The problem is 
+In normal case,the passengers' arrival at the airport is a series of normal distribution.The problem is 
 in some time period the number passengers line for security check is over the maximum load of the 
 checkpoint and lead to long lines and long waiting time.So,it is hard for the passengers to predict 
 how long it will take to get through the checkpoint and board their flight in time.
-
-![](figures/before.png)
-<center>Figure 4.1 the distribution before using pre-allocate time slice schedule</center>
 
 To make the waiting time more stable and predictable for passengers,we take the method called 
 ***"pre-allocate
@@ -527,7 +450,7 @@ from 0 to 1 ( 0 < ***P<sub>M</sub>*** < 1 ).
 After we use the pre-allocate time slice method to balance the passengers' arrival at the 
 check station,we can get the distribution bar graph like below.
 
-![](figures/after.png)
+![]()
 <center>Figure 4.2 the distribution when using pre-allocate time slice schedule</center>
 
 From the graph above we can find that the distribution of the passengers' arrival has changed 
@@ -607,27 +530,6 @@ it will be a very rewarding thing for the passengers' experience.
 
 ## References
 
-[1] Hawley K. Testimony before the United States House of Representatives
-Committee on Transportation and Infrastructure Subcommittee on Aviation.
-July 24, 2008. /http://www.tsa.gov/press/speeches/072408_hawley_aviation_
-security.shtmS, Accessed August 31, 2010.
-
-[2] Feng Q, Sahin H, Kapur KC. Designing airport checked-baggage-screening
-strategies considering system capability and reliability. Reliab Eng Syst Saf
-2009;94(2):618–27.
-
-[3] McLay LA, Jacobson SH, Kobza JE. Integer programming models and analysis
-for a multilevel passenger screening problem. IIE Trans 2007;391:73–81.
-
-[4] McLay LA, Lee AJ, Jacobson SH. Risk-based policies for airport security
-checkpoint screening. Transportation Sci 2009;44(3):333–49.
-
-[5] Lee AJ, McLay LA, Jacobson SH. Designing aviation security passenger screen-
-ing systems using nonlinear control. SIAM J Control Opt 2009;48(4):
-2085–105.
-
-[6] Nikolaev A, Jacobson SH, McLay LA. A sequential stochastic security system
-design problem for aviation security. Transportation Sci 2007;41(2):182–94.
 
 
 
